@@ -590,3 +590,444 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.8rem; }
 }
+
+/* =============================================
+   ANIMATIONS
+============================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+.hero-content  { animation: fadeInUp 0.8s ease both; }
+.hero-badge    { animation: fadeInUp 0.6s ease both; }
+.hero h1       { animation: fadeInUp 0.8s 0.1s ease both; }
+.hero p        { animation: fadeInUp 0.8s 0.2s ease both; }
+.hero-buttons  { animation: fadeInUp 0.8s 0.3s ease both; }
+
+.feature-item  { animation: fadeInUp 0.6s ease both; }
+.feature-item:nth-child(1) { animation-delay: 0.05s; }
+.feature-item:nth-child(2) { animation-delay: 0.15s; }
+.feature-item:nth-child(3) { animation-delay: 0.25s; }
+.feature-item:nth-child(4) { animation-delay: 0.35s; }
+
+.woocommerce ul.products li.product { animation: fadeInUp 0.5s ease both; }
+.woocommerce ul.products li.product:nth-child(1) { animation-delay: 0.05s; }
+.woocommerce ul.products li.product:nth-child(2) { animation-delay: 0.10s; }
+.woocommerce ul.products li.product:nth-child(3) { animation-delay: 0.15s; }
+.woocommerce ul.products li.product:nth-child(4) { animation-delay: 0.20s; }
+
+.btn-primary:hover { animation: none; }
+.header-cart a:hover .cart-count { animation: pulse 0.4s ease; }
+
+/* =============================================
+   HEADER SEARCH
+============================================= */
+.header-search { position: relative; }
+
+.search-toggle {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 6px;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.search-toggle:hover { color: var(--accent); }
+
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  width: 320px;
+  padding: 12px;
+  display: none;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+.header-search.active .search-dropdown { display: block; }
+
+.search-dropdown form {
+  display: flex;
+  gap: 8px;
+}
+
+.search-dropdown input[type="search"] {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.search-dropdown input[type="search"]:focus { border-color: var(--accent); }
+
+.search-dropdown button[type="submit"] {
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.search-dropdown button[type="submit"]:hover { background: var(--accent-hover); }
+
+.mobile-search-bar { display: none; }
+
+@media (max-width: 480px) {
+  .search-dropdown { display: none !important; }
+  .search-toggle   { display: none; }
+  .mobile-search-bar {
+    display: block;
+    background: #111827;
+    padding: 10px 16px;
+  }
+  .mobile-search-bar form {
+    display: flex;
+    gap: 8px;
+  }
+  .mobile-search-bar input[type="search"] {
+    flex: 1;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    outline: none;
+  }
+  .mobile-search-bar input::placeholder { color: rgba(255,255,255,0.5); }
+  .mobile-search-bar button {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+}
+
+/* =============================================
+   SEARCH TOGGLE JS HOOK
+============================================= */
+/* toggled via inline script in footer.php */
+
+/* =============================================
+   STAR RATINGS
+============================================= */
+.woocommerce .star-rating {
+  color: #f5a623 !important;
+  font-size: 0.9rem;
+  margin: 4px 16px 8px !important;
+}
+
+.woocommerce .star-rating::before,
+.woocommerce .star-rating span::before { color: #f5a623 !important; }
+
+.woocommerce #reviews #comments ol.commentlist li .star-rating {
+  margin: 0 0 8px !important;
+}
+
+.woocommerce p.stars a { color: #f5a623 !important; }
+.woocommerce p.stars a:hover,
+.woocommerce p.stars a:after { color: #f5a623 !important; }
+
+/* review comment styling */
+.woocommerce #reviews #comments ol.commentlist li {
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.woocommerce #reviews #comments ol.commentlist li img.avatar {
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow);
+}
+
+.woocommerce #reviews #respond { margin-top: 32px; }
+.woocommerce #reviews #respond .comment-reply-title { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+
+/* =============================================
+   CART PAGE
+============================================= */
+.woocommerce-cart .woocommerce {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.woocommerce table.cart img { border-radius: var(--radius); box-shadow: var(--shadow); }
+
+.woocommerce table.cart td.actions .coupon input[type="text"] {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.woocommerce table.cart td.actions .coupon input:focus { border-color: var(--accent); }
+
+.woocommerce .cart-collaterals {
+  margin-top: 32px;
+}
+
+.woocommerce .cart_totals {
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.woocommerce .cart_totals h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.woocommerce .cart_totals table { width: 100%; }
+.woocommerce .cart_totals table th { color: var(--text-muted); font-weight: 600; padding: 8px 0; }
+.woocommerce .cart_totals table .order-total th,
+.woocommerce .cart_totals table .order-total td { font-size: 1.1rem; font-weight: 800; color: var(--primary); border-top: 2px solid var(--border); padding-top: 12px; }
+
+/* =============================================
+   CHECKOUT PAGE
+============================================= */
+.woocommerce-checkout .woocommerce {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 12px 14px !important;
+  font-size: 0.9rem !important;
+  transition: border-color var(--transition) !important;
+  outline: none !important;
+}
+
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row textarea:focus,
+.woocommerce form .form-row select:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(233,69,96,0.1) !important;
+}
+
+.woocommerce form .form-row label { font-weight: 600; color: var(--primary); font-size: 0.88rem; }
+
+#order_review_heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.woocommerce #payment {
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.woocommerce #payment div.payment_box {
+  background: rgba(233,69,96,0.06);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+
+/* =============================================
+   ABOUT PAGE
+============================================= */
+.about-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+  color: var(--white);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.about-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+.about-hero p  { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+
+.about-content { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.about-grid img { border-radius: 12px; box-shadow: var(--shadow); }
+
+.about-text h2 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 16px; }
+.about-text p  { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.stat-card {
+  background: var(--light);
+  border-radius: var(--radius);
+  padding: 32px 20px;
+  text-align: center;
+  border-top: 4px solid var(--accent);
+}
+
+.stat-card .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+.stat-card .stat-label  { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+
+.team-section { margin-top: 60px; }
+.team-section h2 { font-size: 1.8rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 40px; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 28px;
+}
+
+.team-card {
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.team-card:hover { transform: translateY(-4px); }
+.team-card .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--light); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.team-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); }
+.team-card p  { font-size: 0.85rem; color: var(--accent); margin-top: 4px; }
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* =============================================
+   CONTACT PAGE
+============================================= */
+.contact-hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+  color: var(--white);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.contact-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+.contact-hero p  { color: rgba(255,255,255,0.75); font-size: 1.1rem; }
+
+.contact-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+}
+
+.contact-info h2 { font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 24px; }
+
+.contact-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.contact-item .icon {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.contact-item h4 { font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.contact-item p  { color: var(--text-muted); font-size: 0.9rem; }
+
+.contact-form-wrap h2 { font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 24px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(233,69,96,0.1);
+}
+
+.contact-form textarea { resize: vertical; min-height: 140px; }
+
+.contact-form button {
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 32px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  align-self: flex-start;
+}
+
+.contact-form button:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  .contact-content { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
+}

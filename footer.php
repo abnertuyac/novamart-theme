@@ -48,5 +48,19 @@
 </footer>
 
 <?php wp_footer(); ?>
+
+<script>
+// Search toggle
+document.querySelector('.search-toggle')?.addEventListener('click', function(e) {
+  e.stopPropagation();
+  this.closest('.header-search').classList.toggle('active');
+});
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.header-search')) {
+    document.querySelector('.header-search')?.classList.remove('active');
+  }
+});
+</script>
+
 </body>
 </html>

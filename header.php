@@ -36,8 +36,22 @@
       ]); ?>
     </nav>
 
-    <!-- Cart -->
+    <!-- Search + Cart -->
     <div class="header-actions">
+
+      <!-- Search -->
+      <div class="header-search">
+        <button class="search-toggle" aria-label="Search"><i class="fa fa-search"></i></button>
+        <div class="search-dropdown">
+          <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+            <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+            <input type="hidden" name="post_type" value="product">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Cart -->
       <?php if (class_exists('WooCommerce')): ?>
         <div class="header-cart">
           <a href="<?php echo esc_url(wc_get_cart_url()); ?>" title="Cart">
@@ -46,7 +60,18 @@
           </a>
         </div>
       <?php endif; ?>
+
     </div>
 
   </div>
+
+  <!-- Mobile Search Bar -->
+  <div class="mobile-search-bar">
+    <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+      <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+      <input type="hidden" name="post_type" value="product">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+  </div>
+
 </header>
