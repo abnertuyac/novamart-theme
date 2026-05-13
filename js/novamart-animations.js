@@ -81,6 +81,27 @@
     if (heroSpan) heroSpan.classList.add('nm-highlight-text');
   }
 
+  /* ── Scroll to top button ── */
+  function setupScrollTop() {
+    var btn = document.createElement('button');
+    btn.id = 'nm-scroll-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '<i class="fa fa-chevron-up"></i>';
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        btn.classList.add('nm-visible');
+      } else {
+        btn.classList.remove('nm-visible');
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ── Init ── */
   function init() {
     setupHero();
@@ -89,6 +110,7 @@
     setupCounters();
     setupButtons();
     setupHeroHighlight();
+    setupScrollTop();
   }
 
   if (document.readyState === 'loading') {

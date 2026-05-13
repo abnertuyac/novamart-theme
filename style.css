@@ -1598,3 +1598,157 @@ ul { list-style: none; }
     -webkit-text-fill-color: var(--accent) !important;
   }
 }
+
+/* =============================================
+   ELEMENTOR TESTIMONIAL — override & enhance
+============================================= */
+
+/* Card background, accent top border, shadow */
+.elementor-widget-testimonial {
+  background: var(--white);
+  border-radius: var(--radius);
+  border-top: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.elementor-widget-testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Star ratings injected before quote text */
+.elementor-testimonial-content::before {
+  content: '★★★★★';
+  color: #f5a623;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* Quote text */
+.elementor-testimonial-content {
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 0.95rem;
+}
+
+/* Author name */
+.elementor-testimonial-name {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Job / badge */
+.elementor-testimonial-job {
+  color: var(--accent) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+}
+
+/* Avatar circle */
+.elementor-testimonial-image img {
+  border-radius: 50%;
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow);
+}
+
+/* =============================================
+   ELEMENTOR ICON BOX — hover transitions
+============================================= */
+.elementor-widget-icon-box {
+  transition: transform var(--transition), box-shadow var(--transition);
+  border-radius: var(--radius);
+}
+
+.elementor-widget-icon-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+/* =============================================
+   ELEMENTOR COUNTER — center & style
+============================================= */
+.elementor-counter-number-wrapper {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.elementor-counter-title {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* =============================================
+   ELEMENTOR BUTTON — global refinements
+============================================= */
+.elementor-widget-button .elementor-button {
+  border-radius: var(--radius) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px;
+  transition: all var(--transition) !important;
+}
+
+.elementor-widget-button .elementor-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233,69,96,0.35) !important;
+}
+
+/* =============================================
+   SCROLL TO TOP BUTTON
+============================================= */
+#nm-scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 46px;
+  height: 46px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 18px rgba(233,69,96,0.45);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#nm-scroll-top.nm-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#nm-scroll-top:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 22px rgba(233,69,96,0.55);
+}
+
+/* =============================================
+   ELEMENTOR HEADING — section title underline
+============================================= */
+.elementor-widget-heading + .elementor-widget-text-editor + .elementor-widget-divider
+.elementor-divider-separator {
+  background: var(--accent);
+}
+
+/* =============================================
+   PRODUCT GRID — woo inside Elementor shortcode
+============================================= */
+.elementor-widget-shortcode .woocommerce ul.products {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
