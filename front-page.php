@@ -1,3 +1,14 @@
+<?php
+// If Elementor has built this page, let it render
+$_front_id = get_option('page_on_front');
+if ($_front_id && class_exists('\Elementor\Plugin') && get_post_meta($_front_id, '_elementor_edit_mode', true) === 'builder') {
+    get_header();
+    while (have_posts()) { the_post(); the_content(); }
+    get_footer();
+    return;
+}
+?>
+
 <?php get_header(); ?>
 
 <!-- HERO -->
