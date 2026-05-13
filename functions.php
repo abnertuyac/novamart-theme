@@ -25,8 +25,9 @@ add_action('after_setup_theme', 'novamart_setup');
    Enqueue Styles & Scripts
 -------------------------------------------------- */
 function novamart_enqueue() {
-    wp_enqueue_style('novamart-style', get_stylesheet_uri(), [], '1.0.0');
+    wp_enqueue_style('novamart-style', get_stylesheet_uri(), [], '1.1.0');
     wp_enqueue_style('novamart-icons', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css', [], '6.5.0');
+    wp_enqueue_script('novamart-animations', get_template_directory_uri() . '/js/novamart-animations.js', [], '1.0.0', true);
 }
 add_action('wp_enqueue_scripts', 'novamart_enqueue');
 

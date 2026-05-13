@@ -1441,3 +1441,160 @@ ul { list-style: none; }
 .sale-section .woocommerce ul.products li.product {
   background: var(--white);
 }
+
+/* =============================================
+   SCROLL ANIMATIONS — nm-animate / nm-in
+============================================= */
+
+/* Base state: hidden, shifted down */
+.nm-animate {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  0.65s ease var(--nm-delay, 0s),
+    transform 0.65s ease var(--nm-delay, 0s);
+}
+
+/* Visible state */
+.nm-animate.nm-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icon boxes: subtle scale in addition to slide */
+.elementor-widget-icon-box.nm-animate {
+  transform: translateY(24px) scale(0.96);
+}
+.elementor-widget-icon-box.nm-in {
+  transform: translateY(0) scale(1);
+}
+
+/* Testimonials: slight rotate on entry */
+.elementor-widget-testimonial.nm-animate {
+  transform: translateY(28px) rotate(-0.8deg);
+}
+.elementor-widget-testimonial.nm-in {
+  transform: translateY(0) rotate(0deg);
+}
+
+/* Counters: just fade, no shift (number animation is Elementor's) */
+.elementor-widget-counter.nm-animate {
+  transform: none;
+  opacity: 0;
+}
+.elementor-widget-counter.nm-in {
+  opacity: 1;
+}
+
+/* Shortcode (products grid): fade only — products have their own cascade */
+.elementor-widget-shortcode.nm-animate {
+  transform: none;
+}
+
+/* =============================================
+   HERO LOAD ANIMATION — nm-hero-in
+============================================= */
+@keyframes nmHeroUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nm-hero-in {
+  opacity: 0;
+  animation: nmHeroUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* =============================================
+   HIGHLIGHT TEXT SHIMMER — nm-highlight-text
+============================================= */
+@keyframes nmShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.nm-highlight-text {
+  background: linear-gradient(90deg, #e94560 30%, #ff8fa3 50%, #e94560 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: nmShimmer 3s linear infinite;
+}
+
+/* =============================================
+   FLOAT ANIMATION — .nm-float
+============================================= */
+@keyframes nmFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+.nm-float {
+  animation: nmFloat 3.5s ease-in-out infinite;
+}
+
+/* =============================================
+   BUTTON RIPPLE HOVER — .nm-btn-pulse
+============================================= */
+.nm-btn-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.nm-btn-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  border-radius: inherit;
+}
+
+.nm-btn-pulse:hover::after {
+  transform: scaleX(1);
+}
+
+/* =============================================
+   SECTION REVEAL — subtle left border flash
+============================================= */
+@keyframes nmBorderPop {
+  from { opacity: 0; transform: scaleY(0); }
+  to   { opacity: 1; transform: scaleY(1); }
+}
+
+.elementor-widget-divider.nm-in .elementor-divider-separator {
+  animation: nmBorderPop 0.5s ease forwards;
+  transform-origin: top;
+}
+
+/* =============================================
+   COUNTER WRAP — scale bounce on entry
+============================================= */
+@keyframes nmCountBounce {
+  0%   { transform: scale(0.85); opacity: 0; }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+.nm-counter-wrap.nm-in .elementor-counter-number-wrapper {
+  animation: nmCountBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* =============================================
+   REDUCED MOTION — respect user preference
+============================================= */
+@media (prefers-reduced-motion: reduce) {
+  .nm-animate,
+  .nm-hero-in,
+  .nm-highlight-text,
+  .nm-float,
+  .nm-btn-pulse::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    -webkit-text-fill-color: var(--accent) !important;
+  }
+}
