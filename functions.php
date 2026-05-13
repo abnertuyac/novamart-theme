@@ -73,11 +73,31 @@ function novamart_widgets() {
 add_action('widgets_init', 'novamart_widgets');
 
 /* --------------------------------------------------
-   WooCommerce products per page
--------------------------------------------------- */
-add_filter('loop_shop_per_page', fn() => 8);
-
-/* --------------------------------------------------
    Remove WooCommerce sidebar on shop pages
 -------------------------------------------------- */
 add_filter('woocommerce_sidebar', '__return_false');
+
+/* --------------------------------------------------
+   Shop page hero banner (fires before wrapper)
+-------------------------------------------------- */
+function novamart_shop_hero() {
+    if (is_shop()) {
+        echo '<section class="shop-hero">';
+        echo '<div class="shop-hero-content">';
+        echo '<h1>' . esc_html(woocommerce_page_title(false)) . '</h1>';
+        echo '<p>Discover our full collection of premium fashion &amp; lifestyle products</p>';
+        echo '<nav class="shop-breadcrumb">';
+        echo '<a href="' . esc_url(home_url('/')) . '">Home</a>';
+        echo '<i class="fa fa-chevron-right"></i>';
+        echo '<span>Shop</span>';
+        echo '</nav>';
+        echo '</div>';
+        echo '</section>';
+    }
+}
+add_action('woocommerce_before_main_content', 'novamart_shop_hero', 5);
+
+/* --------------------------------------------------
+   Products per page
+-------------------------------------------------- */
+add_filter('loop_shop_per_page', fn() => 12);

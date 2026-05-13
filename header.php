@@ -28,9 +28,13 @@
         'theme_location' => 'primary',
         'container'      => false,
         'fallback_cb'    => function() {
+          $about   = get_page_by_path('about-us');
+          $contact = get_page_by_path('contact-us');
           echo '<ul>
             <li><a href="' . esc_url(home_url('/')) . '">Home</a></li>
             <li><a href="' . esc_url(get_permalink(wc_get_page_id('shop'))) . '">Shop</a></li>
+            ' . ($about   ? '<li><a href="' . esc_url(get_permalink($about->ID))   . '">About</a></li>'   : '') . '
+            ' . ($contact ? '<li><a href="' . esc_url(get_permalink($contact->ID)) . '">Contact</a></li>' : '') . '
           </ul>';
         },
       ]); ?>
